@@ -1,4 +1,4 @@
 presentations
 =============
 
-Various presentations. Kick it at [bekkopen.github.com/presentations](bekkopen.github.com/presentations).
+Various presentations. Kick it at [bekkopen.github.com/presentations](http://bekkopen.github.com/presentations/).
