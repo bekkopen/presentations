@@ -127,8 +127,10 @@ $ git commit -am "Sjekker inn endringer i tracka filer"</code></pre>
             <li>Er et snapshot av filsystemet ditt</li>
             <li>Ikke kun endringer fra forrige commit</li>
             <li>Vet tilstanden til _alle_ filene</li>
-            <li>Lagrer en kopi av alle endra filer</li>
-            <li>Linker til forrige versjon av uendra filer</li>
+            <ul>
+                <li>Lagrer en kopi av alle endra filer</li>
+                <li>Linker til forrige versjon av uendra filer</li>
+            </ul>
 
             <li>... og har chekcsum på <span class="small">ALT</span>.</li>
         </ul>
@@ -141,7 +143,12 @@ $ git commit -am "Sjekker inn endringer i tracka filer"</code></pre>
 <section>
     <h1>Hva inneholder en commit?</h1>
     <p>Vi spørr git:</p>
-    <pre class="smaller"><code  data-language="shell">$ git cat-file -p HEAD
+    <pre class="smaller"><code  data-language="shell">$ git log # kopier commit-sha
+* 45bc472 - Add source slide. (12 minutes ago) &lt;Mikael Vik>
+...
+...
+
+$ git cat-file -p 45bc472
 tree a8f530b0825169fb475cae96e40fb24620c98c9c
 parent 148dc3f9e5d7dede3ddefae2886b40bb2cfd77a7
 author Mikael Vik &lt;mikael.vik@gmail.com&gt; 1365367117 +0200
@@ -160,12 +167,39 @@ Commit-melding-->
 <section>
     <h1>Branch</h1>
     <p>Lettvekts. Kun en peikar til ein commit-sha.</p>
-    <pre><code class="shell">$ cat .git/refs/heads/master
-        a88bfea96fd1058fbaf7635642c2bd8bff2d226d</code></pre>
+    <ul class="small">
+
+    </ul>
+    <pre><code class="shell">$ git branch greier      # opprett ny branch 'greier'
+$ git checkout -b greier # opprett og sjekk ut ny branch 'greier'
+
+
+$ ll .git/refs/heads/* </code></pre>
+
+    <p class="small">HEAD: peikar alltid til siste commit i branchen du står i</p>
 </section>
 
 <section>
+    <h1>Merging</h1>
+    <p>Fast forward: flytt peikaren </p>
+    <div>
+        <img class="centered" src="http://git-scm.com/figures/18333fig0312-tn.png"/>
+    </div>
+    <p></p>
+    <pre><code data-language="shell">$ git co master
+$ git merge iss53 # flytt master-peikaren fram</code> </pre>
+</section>
+<section>
+    <h1>Merging</h1>
+    <p>No fast forward: lag en merge commit, vis eksplisitt at kode/commits har oppstått i en anna branch </p>
 
+    <div class="centered">
+        <img src="http://git-scm.com/figures/18333fig0315-tn.png"/>
+        <img src="http://git-scm.com/figures/18333fig0317-tn.png"/>
+    </div>
+</section>
+
+<section>
     <pre><code class="shell">$ git remote add origin git@github.com:mikaelvik/nyoppretta-repo.git
 $ git push origin master
     </code> </pre>
