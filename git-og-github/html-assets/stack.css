@@ -58,12 +58,12 @@ blockquote footer:before {
 pre,
 code {
   font-family: 'PT Mono';
-  font-size: 32px;
+  font-size: 26px;
 }
 
 .small pre,
 .small code {
-  font-size: 28px;
+  font-size: 20px;
 }
 
 pre {
@@ -81,7 +81,7 @@ pre {
   display: none;
   font-size: 48px;
   height: 800px;
-  padding: 160px 80px;
+  padding: 100px 80px;
   width: 1280px;
   -webkit-transform: translate3d(0,0,0);
 }
@@ -131,6 +131,14 @@ i {
   text-shadow: 0px 2px 6px rgba(0,0,0,.5);
 }
 
+.smaller {
+  font-size: 26px;
+}
+
+.small {
+  font-size: 40px;
+}
+
 .big {
   font-size: 128px;
 }
@@ -160,6 +168,12 @@ i {
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .twocolumn ul {

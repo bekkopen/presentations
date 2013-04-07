@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<meta charset="utf-8" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
-      xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
-      xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
-      xmlns="http://www.w3.org/1999/html">
+<meta charset="utf-8" xmlns="http://www.w3.org/1999/html">
 <title>Git og Github</title>
 <link href="html-assets/rainbow/tomorrow-night.css" rel="stylesheet">
 <link href="html-assets/stack.css" rel="stylesheet">
@@ -31,6 +28,72 @@
 </section>
 <!-- DONE OC -->
 <!-- START MIKAEL -->
+
+<section>
+    <h1>Git Basics</h1>
+    <ul>
+        <li>Kom igang</li>
+        <li>Commit, branch, merge?</li>
+        <li>Local/Remote</li>
+        <li>Tacklebox</li>
+    </ul>
+</section>
+
+<section>
+    <h1>Kom i gang</h1>
+    <p class="smaller dimmed">I starten må du m.a. identifisere deg...</p>
+    <pre class="small dimmed"><code data-language="shell">$ git config --global user.name "Mikael Vik"
+$ git config --global user.email mikael.vik@gmail.com</code></pre>
+    <p>Opprett lokalt repo og sjekk inn alt</p>
+    <pre><code data-language="shell">$ git init
+$ git add .
+$ git commit -m "Første commit"
+    </code></pre>
+
+</section>
+
+<section>
+    <h1>Hva er en commit?</h1>
+    <blockquote class="smaller">
+        Git thinks of its data more like a set of snapshots of a mini filesystem. Every time you commit, or save the state of your project in Git, it basically
+        takes a picture of what all your files look like at that moment and stores a reference to that snapshot.
+    </blockquote>
+    <div style="float: left">
+        <ul class="smaller">
+            <li>Pnkt 1</li>
+            <li>Pnkt 2</li>
+        </ul>
+    </div>
+    <img class="centered" src="http://git-scm.com/figures/18333fig0105-tn.png"/>
+</section>
+
+<section>
+    <h1>Commit-flyt</h1>
+
+
+    <img class="centered" src="http://git-scm.com/figures/18333fig0201-tn.png"/>
+
+    <pre><code data-language="shell">$ git add .      # add alle filer
+$ git add -u .   # add endringer for tracka filer
+$ git commit -m  "Sjekker inn staga endringer"
+$ git commit -am "Sjekker inn endringer i tracka filer"</code></pre>
+</section>
+
+<section>
+    <h1>Branch</h1>
+    <p>Lettvekts. Kun en peikar til ein commit-sha.</p>
+    <pre><code class="shell">$ cat .git/refs/heads/master
+        a88bfea96fd1058fbaf7635642c2bd8bff2d226d</code></pre>
+</section>
+
+<section>
+
+    <pre><code class="shell">$ git remote add origin git@github.com:mikaelvik/nyoppretta-repo.git
+$ git push origin master
+    </code> </pre>
+
+
+</section>
 
 <!-- DONE MIKAEL -->
 <!-- START HEIMERT -->
