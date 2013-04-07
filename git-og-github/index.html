@@ -62,31 +62,78 @@ $ git commit -m "Første commit"
 </section>
 
 <section>
-    <h1>Hva er en commit?</h1>
+    <h1>Commit-flyt</h1>
+
+    <div class="left small">
+        <ul>
+            <li>Untracked: couldn't care less</li>
+            <li>Uendra: yeye</li>
+            <li>Endra: big deal</li>
+            <li>Staga: WOOOOOHOOOOO!!!</li>
+            <li>Bruk git status</li>
+        </ul>
+    </div>
+
+    <img style="margin-left: 30px" src="http://git-scm.com/figures/18333fig0201-tn.png"/>
+    <p>Alle filer som er staga blir en del av neste commit</p>
+
+</section>
+
+<section>
+    <h1>Så gjør vi så</h1>
+    <p>Staging:</p>
+    <pre><code data-language="shell">$ git add .          # add alle filer
+$ git add css        # add alt i mappa css
+$ git add css/*.css  # add alle css-filer i mappa css
+$ git add -u .       # add endringer for tracka filer</code></pre>
+
+    <p>Commit:</p>
+    <pre><code data-language="shell">$ git commit     # sjekk inn staga filer, editor for commit message
+$ git commit -m  "Sjekker inn staga endringer"
+$ git commit -am "Sjekker inn endringer i tracka filer"</code></pre>
+</section>
+
+<section>
+    <h1>Hvordan lagrer Git the shit?</h1>
     <blockquote class="smaller">
         Git thinks of its data more like a set of snapshots of a mini filesystem. Every time you commit, or save the state of your project in Git, it basically
         takes a picture of what all your files look like at that moment and stores a reference to that snapshot.
     </blockquote>
-    <div style="float: left">
+    <p>En git-commit:</p>
+    <div class="left">
         <ul class="smaller">
-            <li>Pnkt 1</li>
-            <li>Pnkt 2</li>
+            <li>Er et snapshot av filsystemet ditt</li>
+            <li>Ikke kun endringer fra forrige commit</li>
+            <li>Vet tilstanden til _alle_ filene</li>
+            <li>Lagrer en kopi av alle endra filer</li>
+            <li>Linker til forrige versjon av uendra filer</li>
+
+            <li>... og har chekcsum på <span class="small">ALT</span>.</li>
         </ul>
     </div>
-    <img class="centered" src="http://git-scm.com/figures/18333fig0105-tn.png"/>
+    <div>
+        <img class="centered" src="http://git-scm.com/figures/18333fig0105-tn.png"/>
+    </div>
 </section>
 
 <section>
-    <h1>Commit-flyt</h1>
+    <h1>Hva inneholder en commit?</h1>
+    <p>Vi spørr git:</p>
+    <pre class="smaller"><code  data-language="shell">$ git cat-file -p HEAD
+tree a8f530b0825169fb475cae96e40fb24620c98c9c
+parent 148dc3f9e5d7dede3ddefae2886b40bb2cfd77a7
+author Mikael Vik &lt;mikael.vik@gmail.com&gt; 1365367117 +0200
+committer Mikael Vik &lt;mikael.vik@gmail.com&gt; 1365367117 +0200
 
+Add source slide.</code></pre>
 
-    <img class="centered" src="http://git-scm.com/figures/18333fig0201-tn.png"/>
+<!--Peikar til tree-objektet
+Peikar til parent (En merge-commit vil ha to parents.)
+Den skyldige
+Commit-melding-->
 
-    <pre><code data-language="shell">$ git add .      # add alle filer
-$ git add -u .   # add endringer for tracka filer
-$ git commit -m  "Sjekker inn staga endringer"
-$ git commit -am "Sjekker inn endringer i tracka filer"</code></pre>
 </section>
+
 
 <section>
     <h1>Branch</h1>
