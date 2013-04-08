@@ -241,6 +241,32 @@ $ git log --graph --pretty=format:'%h -%C(red)%d%Creset %s <%an>' -3
 
 
 <section>
+    <h1>Hvordan lagrer Git the shit?</h1>
+    <blockquote class="smaller">
+        Git thinks of its data more like a set of snapshots of a mini filesystem. Every time you commit, or save the state of your project in Git, it basically
+        takes a picture of what all your files look like at that moment and stores a reference to that snapshot.
+    </blockquote>
+    <p>En git-commit:</p>
+    <div class="left">
+        <ul class="smaller">
+            <li>Er et snapshot av filsystemet ditt</li>
+            <li>Ikke kun endringer fra forrige commit</li>
+            <li>Vet tilstanden til _alle_ filene</li>
+            <ul>
+                <li>Lagrer kopi av alle endra filer</li>
+                <li>Linker til forrige versjon for uendra filer</li>
+            </ul>
+            <li>Peker til forrige commit</li>
+            <li>... og har chekcsum på <span class="small">ALT</span>.</li>
+        </ul>
+    </div>
+    <div>
+        <img class="centered" src="http://git-scm.com/figures/18333fig0105-tn.png"/>
+    </div>
+</section>
+
+
+<section>
     <!--
     Innholdet i committen er følgende
     - Peker til tree-objektet
@@ -265,34 +291,8 @@ Add source slide.</code></pre>
 </section>
 
 <section>
-    <h1>Hvordan lagrer Git the shit?</h1>
-    <blockquote class="smaller">
-        Git thinks of its data more like a set of snapshots of a mini filesystem. Every time you commit, or save the state of your project in Git, it basically
-        takes a picture of what all your files look like at that moment and stores a reference to that snapshot.
-    </blockquote>
-    <p>En git-commit:</p>
-    <div class="left">
-        <ul class="smaller">
-            <li>Er et snapshot av filsystemet ditt</li>
-            <li>Ikke kun endringer fra forrige commit</li>
-            <li>Vet tilstanden til _alle_ filene</li>
-            <ul>
-                <li>Lagrer kopi av alle endra filer</li>
-                <li>Linker til forrige versjon for uendra filer</li>
-            </ul>
-            <li>Peker til forrige commit</li>
-            <li>... og har chekcsum på <span class="small">ALT</span>.</li>
-        </ul>
-    </div>
-    <div>
-        <img class="centered" src="http://git-scm.com/figures/18333fig0105-tn.png"/>
-    </div>
-</section>
-<section>
     <p class="big">Finn et bilde</p>
 </section>
-
-
 
 <section>
     <h1>git branch</h1>
@@ -395,21 +395,31 @@ $ git config --global alias.lg=log --graph --pretty=format:'%Cred%h%Creset -%C(y
 <section>
     <h1>Heimelekse</h1>
     <p class="small">
-        Hadde vi hatt mer tid ville jeg minst ha gått gjennom dette
+        Hadde vi hatt mer tid ville jeg minst ha gått gjennom dette ...
     </p>
-    <pre><code data-language="shell">$ git rebase
+    <pre><code data-language="shell" class="smaller">$ git rebase
 $ git rebase -i
 $ git rebase -p
 
+$ git stash save
+$ git stash pop
+
 $ git tag &lt;tag name>
 
-$ git cherry-pick &lt;commit-sha>
+$ git cherry-pick &lt;commit-sha></code></pre>
+</section>
 
-$ git lg origin/develop ^develop # incoming
+<section>
+    <h1>&nbsp;</h1>
+    <p class="small">... og dette</p>
+        <pre><code data-language="shell" class="smaller">$ git lg origin/develop ^develop # incoming
 $ git lg develop ^origin/develop # outgoing
 
 $ git reset --soft HEAD~1
-$ git reset --hard HEAD</code></pre>
+$ git reset --hard HEAD
+
+$ git rm &lt;file name>
+$ git mv &lt;from> &lt;to></code></pre>
 </section>
 
 <section>
