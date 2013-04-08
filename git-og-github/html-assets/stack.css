@@ -192,6 +192,9 @@ i {
   float: right;
 }
 
+.half {
+  width: 50%;
+}
 
 @media
 screen and (max-device-width: 1024px) {

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <meta charset="utf-8" xmlns="http://www.w3.org/1999/html">
-<title>Git og Github</title>
+<title>Git og GitHub</title>
 <link href="html-assets/rainbow/tomorrow-night.css" rel="stylesheet">
 <link href="html-assets/stack.css" rel="stylesheet">
 <body class="overview">
 
 <section>
-    <p class="big">Git og Github</p>
+    <p class="big">Git og GitHub</p>
 
     <p class="dimmed">Putting the pro in programming</p>
 </section>
@@ -15,9 +15,9 @@
 <section>
     <p>Written, directed and acted by</p>
 
-    <p><a href="https://github.com/heim">github.com/heim</a></p>
-    <p><a href="https://github.com/mikaelvik">github.com/mikaelvik</a></p>
     <p><a href="https://github.com/judoole">github.com/judoole</a></p>
+    <p><a href="https://github.com/mikaelvik">github.com/mikaelvik</a></p>
+    <p><a href="https://github.com/heim">github.com/heim</a></p>
 </section>
 <section class="bg" style="background-image:url(http://1.bp.blogspot.com/-d0gf6h4oS9o/T8wM93L2MKI/AAAAAAAANvc/l-5pyUIjpRg/s1600/Classic_Avengers_by_scottreed.jpg);">
 </section>
@@ -84,35 +84,75 @@ $ git commit -m "Første commit"
 </section>
 
 <section>
-    <h1>Commit-flyt</h1>
-
-    <div class="left small">
-        <ul>
+    <h1>Fil-tilstander</h1>
+    <p>Commit-flyt</p>
+    <div class="left half">
+        <ul class="small">
             <li>Untracked: couldn't care less</li>
-            <li>Uendra: yeye</li>
-            <li>Endra: big deal</li>
-            <li>Staga: WOOOOOHOOOOO!!!</li>
-            <li>Bruk git status</li>
+            <li>Tracked</li>
+            <ul>
+                <li>Uendra</li>
+                <li>Endra: må addes</li>
+                <li>Staga: WOHOOOO!!!</li>
+            </ul>
         </ul>
+        <p class="smaller">Bruk git status for å sjekke.. <strong>status</strong></p>
     </div>
 
     <img style="margin-left: 30px" src="http://git-scm.com/figures/18333fig0201-tn.png"/>
-    <p>Alle filer som er staga blir en del av neste commit</p>
+    <p>Alle filer som er staga blir med i neste commit</p>
 
 </section>
 
 <section>
     <h1>Så gjør vi så</h1>
-    <p>Staging:</p>
+    <p class="small">Staging:</p>
     <pre><code data-language="shell">$ git add .          # add alle filer
 $ git add css        # add alt i mappa css
 $ git add css/*.css  # add alle css-filer i mappa css
-$ git add -u .       # add endringer for tracka filer</code></pre>
+$ git add -u .       # add endringer kun for tracka filer</code></pre>
 
-    <p>Commit:</p>
-    <pre><code data-language="shell">$ git commit     # sjekk inn staga filer, editor for commit message
-$ git commit -m  "Sjekker inn staga endringer"
-$ git commit -am "Sjekker inn endringer i tracka filer"</code></pre>
+    <p class="small">Commit:</p>
+    <pre><code data-language="shell">$ git commit -m  "Sjekker inn staga endringer"
+$ git commit -am "Sjekker inn endringer i tracka filer"
+$ git commit         # sjekk inn staga filer, editor for message
+$ git commit --amend # endre på siste commit</code></pre>
+</section>
+
+<section>
+    <h1>git log</h1>
+</section>
+
+<section>
+    <h1>Branching og merging</h1>
+    <div>
+        <img style="width: 80%" class="centered" src="images/git-graph-metro.png"/>
+    </div>
+</section>
+
+
+<section>
+    <!--
+    Innholdet i committen er følgende
+    - Peker til tree-objektet
+    - Peker til parent (En merge-commit vil ha to parents.)
+    - Den skyldige
+    - Commit-melding
+    -->
+    <h1>Hva inneholder en commit?</h1>
+    <p>Vi spørr git:</p>
+    <pre class="smaller"><code  data-language="shell">$ git log # kopier commit-sha
+* 45bc472 - Add source slide. (12 minutes ago) &lt;Mikael Vik>
+...
+...
+
+$ git cat-file -p 45bc472
+tree a8f530b0825169fb475cae96e40fb24620c98c9c
+parent 148dc3f9e5d7dede3ddefae2886b40bb2cfd77a7
+author Mikael Vik &lt;mikael.vik@gmail.com&gt; 1365367117 +0200
+committer Mikael Vik &lt;mikael.vik@gmail.com&gt; 1365367117 +0200
+
+Add source slide.</code></pre>
 </section>
 
 <section>
@@ -128,10 +168,10 @@ $ git commit -am "Sjekker inn endringer i tracka filer"</code></pre>
             <li>Ikke kun endringer fra forrige commit</li>
             <li>Vet tilstanden til _alle_ filene</li>
             <ul>
-                <li>Lagrer en kopi av alle endra filer</li>
-                <li>Linker til forrige versjon av uendra filer</li>
+                <li>Lagrer kopi av alle endra filer</li>
+                <li>Linker til forrige versjon for uendra filer</li>
             </ul>
-
+            <li>Peker til forrige commit</li>
             <li>... og har chekcsum på <span class="small">ALT</span>.</li>
         </ul>
     </div>
@@ -139,72 +179,79 @@ $ git commit -am "Sjekker inn endringer i tracka filer"</code></pre>
         <img class="centered" src="http://git-scm.com/figures/18333fig0105-tn.png"/>
     </div>
 </section>
-
 <section>
-    <h1>Hva inneholder en commit?</h1>
-    <p>Vi spørr git:</p>
-    <pre class="smaller"><code  data-language="shell">$ git log # kopier commit-sha
-* 45bc472 - Add source slide. (12 minutes ago) &lt;Mikael Vik>
-...
-...
-
-$ git cat-file -p 45bc472
-tree a8f530b0825169fb475cae96e40fb24620c98c9c
-parent 148dc3f9e5d7dede3ddefae2886b40bb2cfd77a7
-author Mikael Vik &lt;mikael.vik@gmail.com&gt; 1365367117 +0200
-committer Mikael Vik &lt;mikael.vik@gmail.com&gt; 1365367117 +0200
-
-Add source slide.</code></pre>
-
-<!--Peikar til tree-objektet
-Peikar til parent (En merge-commit vil ha to parents.)
-Den skyldige
-Commit-melding-->
-
+    <p class="big">Finn et bilde</p>
 </section>
 
 
+
 <section>
-    <h1>Branch</h1>
-    <p>Lettvekts. Kun en peikar til ein commit-sha.</p>
+    <h1>git branch</h1>
+    <p>Lettvekts. Kun en peker til en commit-sha.</p>
     <ul class="small">
 
     </ul>
-    <pre><code class="shell">$ git branch greier      # opprett ny branch 'greier'
-$ git checkout -b greier # opprett og sjekk ut ny branch 'greier'
+    <pre><code class="shell">$ git branch greier          # opprett ny branch 'greier'
+$ git checkout greier        # sjekk ut branchen
 
+$ git checkout -b nye-greier # opprett og sjekk ut ny branch 'nye-greier'
 
-$ ll .git/refs/heads/* </code></pre>
+$ git checkout master        # bytting av branch
+$ git checkout nye-greier
 
-    <p class="small">HEAD: peikar alltid til siste commit i branchen du står i</p>
+$ find .git/refs/heads -type f
+$ cat .git/HEAD </code></pre>
+
+    <p class="small">HEAD: peker alltid til siste commit i branchen du står i</p>
 </section>
 
 <section>
-    <h1>Merging</h1>
-    <p>Fast forward: flytt peikaren </p>
-    <div>
+    <h1>git merge -ff</h1>
+    <p>Fast forward: flytter pekeren </p>
+    <p class="smaller left half">Dette er den enkleste forma for merging</p>
+    <div >
         <img class="centered" src="http://git-scm.com/figures/18333fig0312-tn.png"/>
     </div>
-    <p></p>
-    <pre><code data-language="shell">$ git co master
-$ git merge iss53 # flytt master-peikaren fram</code> </pre>
+    <br />
+    <pre><code data-language="shell">$ git co -b iss53
+$ git commit -am "Issue-53 fiksa"
+$ git co master
+$ git merge iss53 # flytt master-pekeren fram</code> </pre>
 </section>
 <section>
-    <h1>Merging</h1>
-    <p>No fast forward: lag en merge commit, vis eksplisitt at kode/commits har oppstått i en anna branch </p>
-
-    <div class="centered">
-        <img src="http://git-scm.com/figures/18333fig0315-tn.png"/>
-        <img src="http://git-scm.com/figures/18333fig0317-tn.png"/>
+    <!--
+    Kan også tvinge git til å gjøre en merge-commit ved å slenge på flagget --no-ff.
+    -->
+    <h1>git merge --no-ff</h1>
+    <p>No fast forward: lager en merge commit</p>
+    <p class="smaller left half">Viser eksplisitt at kode/commits har oppstått i en anna branch </p>
+    <div>
+        <img class="centered" src="http://git-scm.com/figures/18333fig0317-tn.png"/>
     </div>
+    <br />
+    <pre><code data-language="shell">$ git co -b iss53
+$ # flere commits
+$ git co master
+$ git pull --ff-only
+$ git merge iss53 # oppretter en merge-commit</code> </pre>
+</section>
+
+<!--TACKLEBOX-->
+
+<section>
+    <h1>Alias</h1>
 </section>
 
 <section>
+    <h1>git rebase</h1>
+</section>
+
+<section>
+    <h1>Push til GitHub</h1>
     <pre><code class="shell">$ git remote add origin git@github.com:mikaelvik/nyoppretta-repo.git
 $ git push origin master
     </code> </pre>
-
-
+    <p>Heimert, take it away!!</p>
 </section>
 
 <!-- DONE MIKAEL -->
