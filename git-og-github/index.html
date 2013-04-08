@@ -243,10 +243,13 @@ $ cat .git/HEAD </code></pre>
 
 <section>
     <h1>git merge -ff</h1>
-    <p>Fast forward: flytter pekeren </p>
-    <p class="smaller left half">Dette er den enkleste forma for merging</p>
+    <div class="left half">
+        <p>Fast forward</p>
+        <p class="small">Flytter pekeren </p>
+        <p class="small">Dette er den enkleste forma for merging</p>
+    </div>
     <div >
-        <img class="centered img-200" src="http://git-scm.com/figures/18333fig0312-tn.png"/>
+        <img class="centered half" src="http://git-scm.com/figures/18333fig0312-tn.png"/>
     </div>
     <br />
     <pre><code data-language="shell">$ git co -b iss53
@@ -259,10 +262,13 @@ $ git merge iss53 # flytt master-pekeren fram</code> </pre>
     Kan også tvinge git til å gjøre en merge-commit ved å slenge på flagget --no-ff.
     -->
     <h1>git merge --no-ff</h1>
-    <p>No fast forward: lager en merge commit</p>
-    <p class="smaller left half">Viser eksplisitt at kode/commits har oppstått i en anna branch </p>
+    <div class="left half">
+        <p>No fast forward</p>
+        <p class="small">Lager en merge commit</p>
+        <p class="smaller">Viser eksplisitt at commits har oppstått i en anna branch </p>
+    </div>
     <div>
-        <img class="centered img-200" src="http://git-scm.com/figures/18333fig0317-tn.png"/>
+        <img class="centered half" src="http://git-scm.com/figures/18333fig0317-tn.png"/>
     </div>
     <br />
     <pre><code data-language="shell">$ git co -b iss53
@@ -274,6 +280,22 @@ $ git merge iss53 # oppretter en merge-commit</code> </pre>
 
 <section>
     <p>Måten Git lagrer commits på er _nettopp_ det som gjør merging så kraftig...</p>
+</section>
+
+<section>
+    <h1>Remotes</h1>
+    <p class="small">Når du skal samarbeide om kode må du legge til minst én remote</p>
+    <pre><code data-language="shell">$ git remote add origin git@github.com:mikaelvik/nyoppretta-repo.git
+$ git push origin master
+
+$ git push
+$ git pull # helst med flagget --ff-only
+
+# git pull er faktisk to operasjoner:
+$ git fetch
+$ git merge origin/&lt;branch-navn> </code></pre>
+    <p class="small">Eller lær frå dei beste...</p>
+    <pre><code data-language="shell">$ git clone git@github.com:bekkopen/presentations.git</code> </pre>
 </section>
 <!--TACKLEBOX-->
 <section>
@@ -298,9 +320,9 @@ $ git config --global alias.lg=log --graph --pretty=format:'%Cred%h%Creset -%C(y
 </section>
 
 <section>
-    <h1>Heimeleikse</h1>
+    <h1>Heimelekse</h1>
     <p class="small">
-        Hadde vi hatt mer tid ville jeg minst ha gått gjennom disse
+        Hadde vi hatt mer tid ville jeg minst ha gått gjennom dette
     </p>
     <pre><code data-language="shell">$ git rebase
 $ git rebase -i
