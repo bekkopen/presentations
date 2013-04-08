@@ -139,9 +139,27 @@ $ git commit --amend # endre på siste commit</code></pre>
 
 <section>
     <h1>git log</h1>
+    <p class="small">
+        Hovedverktøyet for å se på commit-historikken. Ekstremt kraftig.
+    </p>
+    <pre><code data-language="shell">$ git log
+$ git log -1
+$ git log -10
+$ git log --oneline
+
+$ git log --graph --pretty=format:'%h -%C(red)%d%Creset %s <%an>' -3
+# lag et alias for finere log!! </code></pre>
 </section>
 
 <section>
+    <!--
+    Du er smidig.
+    Kunden kommer innom: 'KRISE, bug i prod, vi må ha en hotfix NÅ!!!'
+    Legg det du jobber på i en egen branch.
+    Sjekk ut siste release-tag i en branch. Kod i vei, evt cherry-pick inn eksisterende fix, etc..
+    Prodsett.
+    Gå tilbake til branchen du jobba på.
+    -->
     <h1>Branching og merging</h1>
     <div>
         <img style="width: 80%" class="centered" src="images/git-graph-metro.png"/>
@@ -228,7 +246,7 @@ $ cat .git/HEAD </code></pre>
     <p>Fast forward: flytter pekeren </p>
     <p class="smaller left half">Dette er den enkleste forma for merging</p>
     <div >
-        <img class="centered" src="http://git-scm.com/figures/18333fig0312-tn.png"/>
+        <img class="centered img-200" src="http://git-scm.com/figures/18333fig0312-tn.png"/>
     </div>
     <br />
     <pre><code data-language="shell">$ git co -b iss53
@@ -244,7 +262,7 @@ $ git merge iss53 # flytt master-pekeren fram</code> </pre>
     <p>No fast forward: lager en merge commit</p>
     <p class="smaller left half">Viser eksplisitt at kode/commits har oppstått i en anna branch </p>
     <div>
-        <img class="centered" src="http://git-scm.com/figures/18333fig0317-tn.png"/>
+        <img class="centered img-200" src="http://git-scm.com/figures/18333fig0317-tn.png"/>
     </div>
     <br />
     <pre><code data-language="shell">$ git co -b iss53
@@ -254,26 +272,54 @@ $ git pull --ff-only
 $ git merge iss53 # oppretter en merge-commit</code> </pre>
 </section>
 
+<section>
+    <p>Måten Git lagrer commits på er _nettopp_ det som gjør merging så kraftig...</p>
+</section>
 <!--TACKLEBOX-->
 <section>
-    <p>Tacklebox</p>
-    <iframe width="420" height="315" src="http://www.youtube.com/embed/N-D7fuY4NeY" frameborder="0" allowfullscreen></iframe>
+    <h1>Tacklebox</h1>
+    <iframe class="centered" width="588" height="441" src="http://www.youtube.com/embed/N-D7fuY4NeY" frameborder="0" allowfullscreen></iframe>
 </section>
 
 <section>
     <h1>Alias</h1>
+    <blockquote>
+        Livsnødvendig med haugevis av alias for å komme gjennom dagen, i live.
+        <footer>Mikael Vik</footer>
+    </blockquote>
+    <pre><code data-language="shell">$ git config --global alias.co checkout
+$ git config --global alias.br branch
+$ git config --global alias.ci commit
+$ git config --global alias.st status
+
+$ git config --global alias.softundo=reset --soft HEAD~1
+
+$ git config --global alias.lg=log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(blue)<%an>%Creset' --abbrev-commit --date=relative </code> </pre>
 </section>
 
 <section>
-    <h1>git rebase</h1>
+    <h1>Heimeleikse</h1>
+    <p class="small">
+        Hadde vi hatt mer tid ville jeg minst ha gått gjennom disse
+    </p>
+    <pre><code data-language="shell">$ git rebase
+$ git rebase -i
+$ git rebase -p
+
+$ git tag &lt;tag name>
+
+$ git cherry-pick &lt;commit-sha>
+
+$ git lg origin/develop ^develop # incoming
+$ git lg develop ^origin/develop # outgoing
+
+$ git reset --soft HEAD~1
+$ git reset --hard HEAD</code></pre>
 </section>
 
 <section>
-    <h1>Push til GitHub</h1>
-    <pre><code class="shell">$ git remote add origin git@github.com:mikaelvik/nyoppretta-repo.git
-$ git push origin master
-    </code> </pre>
-    <p>Heimert, take it away!!</p>
+    <p class="big">Heimert</p>
+    <p class="big">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;take it away!!</p>
 </section>
 
 <!-- DONE MIKAEL -->
