@@ -210,10 +210,12 @@ $ git commit --amend # endre på siste commit</code></pre>
 </section>
 
 <section>
-    <h1>git log</h1>
-    <p class="small">
-        Hovedverktøyet for å se på commit-historikken. Ekstremt kraftig.
-    </p>
+    <h1>Se på historikken</h1>
+    <p class="smaller">git diff - endringer mellom commits</p>
+    <pre><code data-language="shell">$ git diff
+$ git diff --staged
+$ git diff &lt;branch-1> &lt;branch-2> # eller commit-sha, tag, osv</code></pre>
+    <p class="smaller">git log - se på commit-historikken. Ekstremt kraftig. </p>
     <pre><code data-language="shell">$ git log
 $ git log -1
 $ git log -10
@@ -274,7 +276,7 @@ $ git log --graph --pretty=format:'%h -%C(red)%d%Creset %s <%an>' -3
     - Commit-melding
     -->
     <h1>Hva inneholder en commit?</h1>
-    <p>Vi spørr git:</p>
+    <p>Vi spør git:</p>
     <pre class="smaller"><code  data-language="shell">$ git log # kopier commit-sha
 * 45bc472 - Add source slide. (12 minutes ago) &lt;Mikael Vik>
 ...
@@ -290,7 +292,9 @@ Add source slide.</code></pre>
 </section>
 
 <section>
-    <p class="big">Finn et bilde</p>
+    <p class="small">Bilde for integritet, td skrætsja harddisk, knust vinyl</p>
+    <p class="small">Data forsvinner aldri, med mindre du skriver om historikken og kjører git gc og force-pusher til remote
+    Men alle utviklere har uansett en fullstendig lokal kopi av repoet</p>
 </section>
 
 <section>
@@ -396,16 +400,16 @@ $ git config --global alias.lg=log --graph --pretty=format:'%Cred%h%Creset -%C(y
     <p class="small">
         Hadde vi hatt mer tid ville jeg minst ha gått gjennom dette ...
     </p>
-    <pre><code data-language="shell" class="smaller">$ git rebase
+    <pre><code data-language="shell" class="smaller">$ git stash save
+$ git stash pop
+
+$ git rebase
 $ git rebase -i
 $ git rebase -p
 
-$ git stash save
-$ git stash pop
+$ git cherry-pick &lt;commit-sha>
 
-$ git tag &lt;tag name>
-
-$ git cherry-pick &lt;commit-sha></code></pre>
+$ git tag &lt;tag name> </code></pre>
 </section>
 
 <section>
@@ -414,8 +418,14 @@ $ git cherry-pick &lt;commit-sha></code></pre>
         <pre><code data-language="shell" class="smaller">$ git lg origin/develop ^develop # incoming
 $ git lg develop ^origin/develop # outgoing
 
+$ git reflog
+$ git fsck
+
 $ git reset --soft HEAD~1
 $ git reset --hard HEAD
+
+$ git br -d &lt;branch>
+$ git push origin :&lt;branch som skal slettes>
 
 $ git rm &lt;file name>
 $ git mv &lt;from> &lt;to></code></pre>
