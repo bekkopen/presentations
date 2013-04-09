@@ -162,8 +162,8 @@ Og elsker å kode
     <h1>Git Basics</h1>
     <ul>
         <li>Kom igang</li>
-        <li>Commit, branch, merge?</li>
-        <li>Local/Remote</li>
+        <li>Arbeidsflyt</li>
+        <li>Remotes</li>
         <li>Tacklebox</li>
     </ul>
 </section>
@@ -194,7 +194,7 @@ $ git commit -m "Første commit"
                 <li>Staga: WOHOOOO!!!</li>
             </ul>
         </ul>
-        <p class="smaller">Bruk git status for å sjekke.. <strong>status</strong></p>
+        <p class="smaller dimmed">Bruk git status for å sjekke.. <strong>status</strong></p>
     </div>
 
     <img style="margin-left: 30px" src="http://git-scm.com/figures/18333fig0201-tn.png"/>
@@ -205,27 +205,24 @@ $ git commit -m "Første commit"
 <section>
     <h1>Så gjør vi så</h1>
     <p class="small">Staging:</p>
-    <pre><code data-language="shell">$ git add .          # add alle filer
+    <pre><code data-language="shell">$ git add . # add alle filer (unntatt ved match i .gitignore)
 $ git add css        # add alt i mappa css
-$ git add css/*.css  # add alle css-filer i mappa css
-$ git add -u .       # add endringer kun for tracka filer</code></pre>
+$ git add css/*.css  # add alle css-filer i mappa css</code></pre>
 
     <p class="small">Commit:</p>
     <pre><code data-language="shell">$ git commit -m  "Sjekker inn staga endringer"
 $ git commit -am "Sjekker inn endringer i tracka filer"
-$ git commit         # sjekk inn staga filer, editor for message
-$ git commit --amend # endre på siste commit</code></pre>
+</code></pre>
 </section>
 
 <section>
     <h1>Se på historikken</h1>
-    <p class="smaller">git diff - endringer mellom commits</p>
+    <p class="small">git diff - endringer mellom commits</p>
     <pre><code data-language="shell">$ git diff
 $ git diff --staged
 $ git diff &lt;branch-1> &lt;branch-2> # eller commit-sha, tag, osv</code></pre>
-    <p class="smaller">git log - se på commit-historikken. Ekstremt kraftig. </p>
+    <p class="small">git log - se på commit-historikken. Ekstremt kraftig. </p>
     <pre><code data-language="shell">$ git log
-$ git log -1
 $ git log -10
 $ git log --oneline
 
@@ -266,7 +263,7 @@ $ git log --graph --pretty=format:'%h -%C(red)%d%Creset %s <%an>' -3
                 <li>Linker til forrige versjon for uendra filer</li>
             </ul>
             <li>Peker til forrige commit</li>
-            <li>... og har chekcsum på <span class="small">ALT</span>.</li>
+            <li>... og har checksum på <span class="small">ALT</span>.</li>
         </ul>
     </div>
     <div>
@@ -275,37 +272,29 @@ $ git log --graph --pretty=format:'%h -%C(red)%d%Creset %s <%an>' -3
 </section>
 
 
-<section>
-    <!--
-    Innholdet i committen er følgende
-    - Peker til tree-objektet
-    - Peker til parent (En merge-commit vil ha to parents.)
-    - Den skyldige
-    - Commit-melding
-    -->
-    <h1>Hva inneholder en commit?</h1>
-    <p>Vi spør git:</p>
-    <pre class="smaller"><code  data-language="shell">$ git log # kopier commit-sha
-* 45bc472 - Add source slide. (12 minutes ago) &lt;Mikael Vik>
-...
-...
+<!--<section>-->
+    <!--&lt;!&ndash;-->
+    <!--Innholdet i committen er følgende-->
+    <!--- Peker til tree-objektet-->
+    <!--- Peker til parent (En merge-commit vil ha to parents.)-->
+    <!--- Den skyldige-->
+    <!--- Commit-melding-->
+    <!--&ndash;&gt;-->
+    <!--<h1>Hva inneholder en commit?</h1>-->
+    <!--<p>Vi spør git:</p>-->
+    <!--<pre class="smaller"><code  data-language="shell">$ git log # kopier commit-sha-->
+<!--* 45bc472 - Add source slide. (12 minutes ago) &lt;Mikael Vik>-->
+<!--...-->
+<!--...-->
 
-$ git cat-file -p 45bc472
-tree a8f530b0825169fb475cae96e40fb24620c98c9c
-parent 148dc3f9e5d7dede3ddefae2886b40bb2cfd77a7
-author Mikael Vik &lt;mikael.vik@gmail.com&gt; 1365367117 +0200
-committer Mikael Vik &lt;mikael.vik@gmail.com&gt; 1365367117 +0200
+<!--$ git cat-file -p 45bc472-->
+<!--tree a8f530b0825169fb475cae96e40fb24620c98c9c-->
+<!--parent 148dc3f9e5d7dede3ddefae2886b40bb2cfd77a7-->
+<!--author Mikael Vik &lt;mikael.vik@gmail.com&gt; 1365367117 +0200-->
+<!--committer Mikael Vik &lt;mikael.vik@gmail.com&gt; 1365367117 +0200-->
 
-Add source slide.</code></pre>
-</section>
-
-<section class="bg" style="background-image:url(images/harddrive_scratched.jpg);background-repeat:no-repeat;">
-    <!--
-    Git har integritet og er robust. Data forsvinner aldri, ingenting blir sletta.
-    ... med mindre du skriver om historikken og kjører git gc og force-pusher til remote
-    Men alle utviklere har uansett en fullstendig lokal kopi av repoet
-    -->
-</section>
+<!--Add source slide.</code></pre>-->
+<!--</section>-->
 
 <section>
     <h1>git branch</h1>
@@ -364,8 +353,16 @@ $ git pull --ff-only
 $ git merge iss53 # oppretter en merge-commit</code> </pre>
 </section>
 
-<section>
+<section class="bg" style="background-image:url(images/harddrive_scratched.jpg);background-repeat:no-repeat;">
+    <!--
+    Git har integritet og er robust. Data forsvinner aldri, ingenting blir sletta.
+    ... med mindre du skriver om historikken og kjører git gc og force-pusher til remote
+    Men alle utviklere har uansett en fullstendig lokal kopi av repoet
+    -->
+</section>
 
+
+<section>
     <p>Måten Git lagrer commits på er _nettopp_ det som gjør Git så kraftig...</p>
     <ul>
         <li>Det meste er lokale operasjoner</li>
@@ -428,6 +425,8 @@ $ git rebase -p
 
 $ git cherry-pick &lt;commit-sha>
 
+$ git commit         # sjekk inn staga filer, editor for message
+$ git commit --amend # endre på siste commit
 $ git tag &lt;tag name> </code></pre>
 </section>
 
