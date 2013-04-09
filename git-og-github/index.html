@@ -198,18 +198,17 @@ $ git commit -m "Første commit"
     </div>
 
     <img style="margin-left: 30px" src="http://git-scm.com/figures/18333fig0201-tn.png"/>
-    <p>Alle filer som er staga blir med i neste commit</p>
+    <p>Alle endringer som er staga blir med i neste commit</p>
 
 </section>
 
 <section>
-    <h1>Så gjør vi så</h1>
-    <p class="small">Staging:</p>
+    <p>Staging:</p>
     <pre><code data-language="shell">$ git add . # add alle filer (unntatt ved match i .gitignore)
 $ git add css        # add alt i mappa css
 $ git add css/*.css  # add alle css-filer i mappa css</code></pre>
 
-    <p class="small">Commit:</p>
+    <p>Commit:</p>
     <pre><code data-language="shell">$ git commit -m  "Sjekker inn staga endringer"
 $ git commit -am "Sjekker inn endringer i tracka filer"
 </code></pre>
@@ -221,30 +220,14 @@ $ git commit -am "Sjekker inn endringer i tracka filer"
     <pre><code data-language="shell">$ git diff
 $ git diff --staged
 $ git diff &lt;branch-1> &lt;branch-2> # eller commit-sha, tag, osv</code></pre>
-    <p class="small">git log - se på commit-historikken. Ekstremt kraftig. </p>
+    <p class="small">git log - se på commit-historikken</p>
     <pre><code data-language="shell">$ git log
 $ git log -10
-$ git log --oneline
 
+$ git log --oneline
 $ git log --graph --pretty=format:'%h -%C(red)%d%Creset %s <%an>' -3
 # lag et alias for finere log!! </code></pre>
 </section>
-
-<section>
-    <!--
-    Du er smidig.
-    Kunden kommer innom: 'KRISE, bug i prod, vi må ha en hotfix NÅ!!!'
-    Legg det du jobber på i en egen branch.
-    Sjekk ut siste release-tag i en branch. Kod i vei, evt cherry-pick inn eksisterende fix, etc..
-    Prodsett.
-    Gå tilbake til branchen du jobba på.
-    -->
-    <h1>Branching og merging</h1>
-    <div>
-        <img style="width: 80%" class="centered" src="images/git-graph-metro.png"/>
-    </div>
-</section>
-
 
 <section>
     <h1>Hvordan lagrer Git the shit?</h1>
@@ -270,6 +253,23 @@ $ git log --graph --pretty=format:'%h -%C(red)%d%Creset %s <%an>' -3
         <img class="centered" src="http://git-scm.com/figures/18333fig0105-tn.png"/>
     </div>
 </section>
+
+
+<section>
+    <!--
+    Du er smidig.
+    Kunden kommer innom: 'KRISE, bug i prod, vi må ha en hotfix NÅ!!!'
+    Legg det du jobber på i en egen branch.
+    Sjekk ut siste release-tag i en branch. Kod i vei, evt cherry-pick inn eksisterende fix, etc..
+    Prodsett.
+    Gå tilbake til branchen du jobba på.
+    -->
+    <h1>Branching og merging</h1>
+    <div>
+        <img style="width: 80%" class="centered" src="images/git-graph-metro.png"/>
+    </div>
+</section>
+
 
 
 <!--<section>-->
@@ -311,17 +311,15 @@ $ git checkout master        # bytting av branch
 $ git checkout nye-greier
 
 $ find .git/refs/heads -type f
-$ cat .git/HEAD </code></pre>
-
-    <p class="small">HEAD: peker alltid til siste commit i branchen du står i</p>
+$ cat .git/HEAD  # peker til siste commit i branchen du står i</code></pre>
 </section>
 
 <section>
     <h1>git merge -ff</h1>
     <div class="left half">
         <p>Fast forward</p>
-        <p class="small">Flytter pekeren </p>
-        <p class="small">Dette er den enkleste forma for merging</p>
+        <p class="small">Den enkleste forma for merging</p>
+        <p class="small">Flytter pekeren (master til C3)</p>
     </div>
     <div >
         <img class="centered half" src="http://git-scm.com/figures/18333fig0312-tn.png"/>
@@ -363,15 +361,15 @@ $ git merge iss53 # oppretter en merge-commit</code> </pre>
 
 
 <section>
-    <p>Måten Git lagrer commits på er _nettopp_ det som gjør Git så kraftig...</p>
+    <p>Måten Git lagrer commits på er no av det som gjør Git så kraftig...</p>
     <ul>
         <li>Det meste er lokale operasjoner</li>
         <li>Lynkjapt</li>
         <li>Lett å branche</li>
         <li>Lett å merge</li>
-        <li>Data-integritet</li>
-        <li>Robust</li>
     </ul>
+    <p>Data-integritet</p>
+    <p>Robust</p>
 </section>
 
 <section>
@@ -384,8 +382,8 @@ $ git push
 $ git pull # helst med flagget --ff-only
 
 # git pull er faktisk to operasjoner:
-$ git fetch
-$ git merge origin/&lt;branch-navn> </code></pre>
+# git fetch
+# git merge origin/&lt;branch-navn> </code></pre>
     <p class="small">Eller lær frå dei beste...</p>
     <pre><code data-language="shell">$ git clone git@github.com:bekkopen/presentations.git</code> </pre>
 </section>
