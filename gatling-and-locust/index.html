@@ -10,6 +10,19 @@
 
 		<link rel="stylesheet" href="../assets/revealjs/css/reveal.min.css">
 		<link rel="stylesheet" href="../assets/revealjs/css/theme/default.css" id="theme">
+		<style type="text/css">
+			ul.checkmark li:before{
+    			content:"\2713\0020";
+			}
+			ul.checkmark li{
+				list-style-type:none;
+			}
+			column{
+				float: left;
+				text-align: left;
+				width: 50%;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -19,12 +32,141 @@
 				<section>
 					<h4>Ytelsestesting</h4>
 					<h4>med</h4>
-					<h2>Gatling og Locust</h2>
+					<h1>Gatling og Locust</h1>
+				</section>
+
+				<!-- The speakers -->
+				<section>
+					<div style="float:left;width:50%;text-align:left">
+						<h3>Stefan Magnus Landrø</h3>
+						<ul class="checkmark">
+							<li>Manager</li>
+							<li>Far</li>
+							<li>Ingénieur Diplômé INSA Toulouse</li>
+							<li>Gatling gunner</li>
+							<li>10++ år med progging</li>
+							<li>Bekk siden 2004</li>
+						</ul>
+					</div>
+					<div style="float:left;width:50%">
+						<img src="assets/stefan.jpeg" align="right">
+						<br>
+						<img src="assets/longfeathers.jpeg" align="right" style="-webkit-filter: blur(5px);">
+					</div>
+				</section>
+				<section>
+					<column>
+						<h3>Ole Chr. Langfjæran</h3>
+						<ul class="checkmark">
+							<li>Manager</li>
+							<li>Far</li>
+							<li>Ingeniør de HiST</li>
+							<li>Locust dude</li>
+							<li>Bekk siden 2006</li>
+						</ul>
+					</column>
+					<column>
+						<img src="assets/stefan.jpeg" align="right" style="-webkit-filter: blur(5px);">
+						<br>
+						<img src="assets/longfeathers.jpeg" align="right">
+					</column>
+				</section>
+
+				<!-- Agenda -->
+				<section>
+					<h2>Hva skal vi prate om</h2>
+					<ul>
+						<li>Hvorfor</li>
+						<li>Hvordan</li>
+						<li>Locust</li>
+						<li>Gatling</li>
+						<li>Krigshistorier</li>
+						<li>Oppsummering</li>
+					</ul>
+				</section>
+
+				<!-- Hvorfor -->
+				<section>
+					<section>
+						<h2>Hvorfor?</h2>
+					</section>			
+					<section>
+						<column>
+							<img src="http://crunchify.com/wp-content/uploads/2013/01/Twitter-Failed-Whale.png" align="left">
+						</column>
+						<column>
+						<p>Mange systemer feiler pga at de ikke var klar for å motta en produksjonslast. Eller svarer alt for sent.</p>
+						</column>						
+					</section>
+					<section>
+						<column>
+							<img src="http://crunchify.com/wp-content/uploads/2013/01/Twitter-Failed-Whale.png" align="left">
+						</column>
+						<column>
+						<p>På samme måte er det lite hensiktsmessig å bruke ekstra ressurser for å lage noe som ikke trenger å skalere for tusenvis av brukere.</p>
+						</column>
+					</section>
+					<section>
+						<h2>Krav:</h2>
+						<p>Skal kunne betale med kredittkort</p>
+					</section>
+					<section>
+						<h2>Krav:</h2>
+						<p>Systemet skal kunne betjene 1000 samtidige betalende kunder</p>
+					</section>
+					<section>
+						<column>
+							<h2>NFR</h2>
+							<p>Non Functional Requirements</p>
+							<blockquote cite="http://www.amazon.com/Continuous-Delivery-Deployment-Automation-Addison-Wesley/dp/0321601912/ref=sr_1_1?ie=UTF8&qid=1377554394&sr=8-1&keywords=continuous+delivery">...as availability, capacity, security, and maintainability are every bit as important and valuable as functional ones, and they are essential to the functioning of the system.</blockquote>
+						</column>
+						<column>
+							<img src="http://martinfowler.com/continuousDelivery.jpg" align="right">
+						</column>
+					</section>
+					<section>
+						<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Money_Cash.jpg/1280px-Money_Cash.jpg">
+					</section>
+					<section>
+						<h2>Amazon</h2>
+						<column>
+							<p>+ 100ms</p>
+							<p>&#8594; -1% salg</p>
+							<p>&#8594; Årlig tap på ca $160M/år</p>
+						</column>
+						<column>
+							<img src="http://musicinfo.fi/images/amazon-logo-8.png" align="right">
+						</column>
+					</section>
+					<section >					
+						<column>
+							<h3>Das experiment</h3>
+							<p>Senket hastigheten til et utvalg intetanede</p>
+							<p>100 to 400 millisekunder</p>
+							<p>=> 0.2% - 0.4% mindre søk</p>
+							<br>
+							<p>Vedvarte etter de slo på igjen!</p>
+							<!-- http://googleresearch.blogspot.no/2009/06/speed-matters.html -->
+						</column>
+						<column>
+							<h1 align="right">Google</h1>
+						</column>
+					</section>
+					<section>
+						<img src="http://upload.wikimedia.org/wikipedia/commons/d/df/Uncle_Sam_(pointing_finger).png">
+					</section>
 				</section>
 
 				<section>
 					<section>
-						<h2>Intro</h2>
+						<h2>Hvordan</h2>
+					</section>
+					<section>
+						<h2>Definisjoner</h2>
+						<p>Performance = 1 transaksjon</p>
+						<p>Throughput = # transaksjoner over tid</p>
+						<br>
+						<p>Capacity = max throughput med tilfredsstillende performance</p>
 					</section>
 					<section>
 						<h2>Build pipelines</h2>
@@ -53,6 +195,54 @@ where customization is needed, it is easy to drop into Scala to
 provide extensions. The default generation of numerous dynamic 
 views of the data via Highcharts adds to its appeal.</p>
 					</section>										
+				</section>
+
+				<section>
+					<section>
+						<h2>Locust</h2>
+					</section>
+					<section>
+						<h2>What</h2>
+					</section>
+					<section>
+						<h2>Litt sparsomt med eksempel</h2>
+					</section>
+					<section>
+						<h2>Skrevet i Python</h2>
+						<h2>Kode. Ikke clunky UI eller bloated XML</h2>
+					</section>					
+					<section>
+						<h2>Kort om python. Bruk eksempelet</h2>
+						<h2>Comments. Triple line.</h2>
+					</section>
+					<section>
+						<h2>Why</h2>
+					</section>
+					<section>
+						<h2>How</h2>						
+					</section>
+					<section>
+						<h2>Specify host</h2>						
+					</section>
+					<section>
+						<h2>Locust --help</h2>						
+					</section>
+					<section>
+						<h2>Hvordan med Jenkins</h2>						
+					</section>
+					<section>
+						<h2>Hvorfor med Jenkins?</h2>						
+					</section>
+					<section>
+						<h2>Build Pipelines</h2>						
+					</section>
+					<section>
+						<h2>Web Routes</h2>
+						<h2>/my_page</h2>
+					</section>
+					<section>
+						<h2>Ramp'ing</h2>
+					</section>					
 				</section>
 
 				<section>
@@ -138,52 +328,6 @@ views of the data via Highcharts adds to its appeal.</p>
                     </section>
                 </section>
 
-				<section>
-					<section>
-						<h2>Locust</h2>
-					</section>
-					<section>
-						<h2>What</h2>
-					</section>
-					<section>
-						<h2>Litt sparsomt med eksempel</h2>
-					</section>
-					<section>
-						<h2>Skrevet i Python</h2>
-						<h2>Kode. Ikke clunky UI eller bloated XML</h2>
-					</section>					
-					<section>
-						<h2>Kort om python. Bruk eksempelet</h2>
-						<h2>Comments. Triple line.</h2>
-					</section>
-					<section>
-						<h2>Why</h2>
-					</section>
-					<section>
-						<h2>How</h2>						
-					</section>
-					<section>
-						<h2>Specify host</h2>						
-					</section>
-					<section>
-						<h2>Locust --help</h2>						
-					</section>
-					<section>
-						<h2>Hvordan med Jenkins</h2>						
-					</section>
-					<section>
-						<h2>Hvorfor med Jenkins?</h2>						
-					</section>
-					<section>
-						<h2>Build Pipelines</h2>						
-					</section>
-					<section>
-						<h2>Web Routes</h2>
-						<h2>/my_page</h2>
-					</section>
-				</section>
-
-
                 <section>
                     <section>
                         <h2>Oppsummering</h2>
@@ -211,7 +355,8 @@ views of the data via Highcharts adds to its appeal.</p>
 	<script>
 
 			Reveal.initialize({
-				transition: 'linear'
+				transition: 'linear',
+				history: true,
 			});
 
 		</script>
