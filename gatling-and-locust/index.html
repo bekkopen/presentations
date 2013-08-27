@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="no">
 
 	<head>
 		<meta charset="utf-8">
@@ -10,6 +10,7 @@
 
 		<link rel="stylesheet" href="../assets/revealjs/css/reveal.min.css">
 		<link rel="stylesheet" href="../assets/revealjs/css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="../assets/revealjs/css/zenburn.css" id="theme">
 		<style type="text/css">
 			ul.checkmark li:before{
     			content:"\2713\0020";
@@ -21,6 +22,9 @@
 				float: left;
 				text-align: left;
 				width: 50%;
+			}
+			emphasize{
+				color: #ff6600;
 			}
 		</style>
 	</head>
@@ -35,7 +39,11 @@
 					<h1>Gatling og Locust</h1>
 				</section>
 
-				<!-- The speakers -->
+<!-- 
+*******************************
+*          Speakers           *
+*******************************
+-->	
 				<section>
 					<div style="float:left;width:50%;text-align:left">
 						<h3>Stefan Magnus Landrø</h3>
@@ -45,6 +53,7 @@
 							<li>Ingénieur Diplômé INSA Toulouse</li>
 							<li>Gatling gunner</li>
 							<li>10++ år med progging</li>
+							<li>Faggruppeleder Cloud og Big data</li>
 							<li>Bekk siden 2004</li>
 						</ul>
 					</div>
@@ -61,7 +70,8 @@
 							<li>Manager</li>
 							<li>Far</li>
 							<li>Ingeniør de HiST</li>
-							<li>Locust dude</li>
+							<li>Locust interessert</li>
+							<li>Faggruppe Programmeringsspråk</li>
 							<li>Bekk siden 2006</li>
 						</ul>
 					</column>
@@ -85,7 +95,11 @@
 					</ul>
 				</section>
 
-				<!-- Hvorfor -->
+<!-- 
+*******************************
+*          Hvorfor            *
+*******************************
+-->	
 				<section>
 					<section>
 						<h2>Hvorfor?</h2>
@@ -99,12 +113,8 @@
 						</column>						
 					</section>
 					<section>
-						<column>
-							<img src="http://crunchify.com/wp-content/uploads/2013/01/Twitter-Failed-Whale.png" align="left">
-						</column>
-						<column>
-						<p>På samme måte er det lite hensiktsmessig å bruke ekstra ressurser for å lage noe som ikke trenger å skalere for tusenvis av brukere.</p>
-						</column>
+						<blockquote>We should forget about small efficiencies, say, about 97% of the time:<b> Premature optimization is the root of all evil. </b>Yet we should not pass up our opportunities in that critical 3%.</blockquote>
+						<p>Donald Knuth</p>
 					</section>
 					<section>
 						<h2>Krav:</h2>
@@ -121,11 +131,10 @@
 							<blockquote cite="http://www.amazon.com/Continuous-Delivery-Deployment-Automation-Addison-Wesley/dp/0321601912/ref=sr_1_1?ie=UTF8&qid=1377554394&sr=8-1&keywords=continuous+delivery">...as availability, capacity, security, and maintainability are every bit as important and valuable as functional ones, and they are essential to the functioning of the system.</blockquote>
 						</column>
 						<column>
-							<img src="http://martinfowler.com/continuousDelivery.jpg" align="right">
+							<img src="assets/continuousDelivery.jpg" align="right">
 						</column>
 					</section>
-					<section>
-						<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Money_Cash.jpg/1280px-Money_Cash.jpg">
+					<section data-background="http://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Money_Cash.jpg/1280px-Money_Cash.jpg">			
 					</section>
 					<section>
 						<h2>Amazon</h2>
@@ -155,8 +164,28 @@
 					<section>
 						<img src="http://upload.wikimedia.org/wikipedia/commons/d/df/Uncle_Sam_(pointing_finger).png">
 					</section>
+					<section>
+						<p>mao:</p>
+						<h2>Start tidlig med ytelseskrav!</h2>
+						<p>og vær spesifikk.</p>
+						<p>alle transaksjoner skal ta under 2 sek er ikke spesifikt nok.</p>
+					</section>
+					<section>
+						<p>f.eks:</p>
+						<h2>Systemeier krever høy ytelse</h2>
+						<br>
+						<p>&#8594; ikke SOA</p>
+					</section>										
+					<section>
+						<h2>Start tidlig med ytelsestesting!</h2>
+					</section>
 				</section>
 
+<!-- 
+*******************************
+*          Hvordan            *
+*******************************
+-->	
 				<section>
 					<section>
 						<h2>Hvordan</h2>
@@ -169,82 +198,311 @@
 						<p>Capacity = max throughput med tilfredsstillende performance</p>
 					</section>
 					<section>
-						<h2>Build pipelines</h2>
-						<p>Tease litt senere</p>
+						<table cellspacing="20">
+							<tr>
+								<td width="50%">
+									<h4>Longevity testing</h4>
+									<p>Kjøre systemet over lang tid for å fange opp minne og stabilitetsproblemer</p>
+								</td>
+								<td width="50%">
+									<h4>Scaleability testing</h4>
+									<p>Hva betyr mer servere? Tråder?</p>
+								</td>
+							</tr>
+							<tr margin>
+								<td width="50%">
+									<h4>Throughput testing</h4>
+									<p>Antall transaksjoner per sekund</p>
+								</td>
+								<td width="50%">
+									<h4>Load testing</h4>
+									<p>Prod-lik last</p>
+								</td>
+							</tr>
+						</table>
 					</section>
+					<section>
+						<column>
+						<h2>Tips fra</h2>
+						</column>
+						<column>
+							<img src="assets/continuousDelivery.jpg" align="right">
+						</column>
+					</section>
+					<section>
+						<column>
+						<h3>Test i et isolert miljø</h3>
+						<p>dvs ikke samme server som tester eller enhetstester bruker</p>
+						</column>
+						<column>
+							<img src="assets/continuousDelivery.jpg" align="right">
+						</column>
+					</section>
+					<section>
+						<column>
+							<h3>Ikke bruk virtuell server</h3>
+							<p>Med mindre prod også er virtuelt</p>
+						</column>
+						<column>
+							<img src="assets/continuousDelivery.jpg" align="right">
+						</column>
+					</section>
+					<section>
+						<column>
+							<h3>Sett nivået høyere enn minumum</h3>
+							<p>Og senk når du ser det begynner å feile</p>
+						</column>
+						<column>
+							<img src="assets/continuousDelivery.jpg" align="right">
+						</column>
+					</section>
+					<section>
+						<column>
+							<h3>Initiell terskel</h3>
+							<p>Krav:</p>
+							<p>100 000 dokumenter/dag</p>
+							<br>
+							<p>Dvs: 12.500/time</p>
+							<p>Dvs: 105/30 sek</p>
+							<br>
+							<p>Altså lag en kapasitetstest som går over 30 sek</p>
+						</column>
+						<column>
+							<img src="assets/continuousDelivery.jpg" align="right">
+						</column>
+					</section>
+					<section>
+						<column>
+							<h3>Invester i prodlikt hardware/software</h3>
+							<p>Du kan aldri være sikker på resultatet ved dårlige kopier</p>
+							<br>
+							<p>Og dette må jo vedlikeholdes. Så invester tid i Puppet/Salt/Chef e.l.</p>
+						</column>
+						<column>
+							<img src="assets/continuousDelivery.jpg" align="right">
+						</column>
+					</section>
+					<section>
+						<column>
+							<h3>Canary testing</h3>
+							<p>Rut et utvalg brukere i PROD til den nye versjonen</p>
+							<br>
+							<p>Du kan også rute en kapasitetstest slik til den nye versjonen</p>
+						</column>
+						<column>
+							<img src="assets/continuousDelivery.jpg" align="right">
+						</column>
+					</section>									
+					<section>
+						<column>
+							<h3>Michael Nygard</h3>
+							<blockquote>"Identify whatever your most expensive transactions are, and double or triple  the proportions of those transactions"</blockquote>
+						</column>
+						<column>
+							<img src="assets/releaseit.jpg" align="right">
+						</column>
+					</section>																			
+					<section data-background="https://wiki.jenkins-ci.org/download/attachments/54723106/bpp1.png">
+					</section>
+				</section>
+
+<!-- 
+*******************************
+*      Thoughtworks words     *
+*******************************
+-->					
 					<section>
 						<h2>Thoughtworks oktober 2012</h2>
 						<p>We are strong believers in in-line automated performance 
 testing, although open source tools in this space have been 
-somewhat limited to date. Locust is a firm favorite that 
+somewhat limited to date. <emphasize>Locust is a firm favorite that 
 provides the ability to write tests in Python, with good support 
 for running multiple injectors, basic statistics generation, and 
-a useful web dashboard. Its approach to web load testing 
+a useful web dashboard.</emphasize> Its approach to web load testing 
 focuses more on the simulation of users than just generating 
 hits per second. We would typically recommend Locust over 
 and above older tools such as JMeter or Grinder.</p>
 					</section>
 					<section>
 						<h2>Thoughtworks mai 2013</h2>
-						<p>Gatling is another newer player in the automated performance 
-testing space. It is similar to Locust and is much lighter weight 
-than the older options such as JMeter and Grinder. Built on Scala, 
-the DSL provides extensive functionality out of the box including 
+						<p><emphasize>Gatling is another newer player in the automated performance 
+testing space. </emphasize>It is similar to Locust and is much lighter weight 
+than the older options such as JMeter and Grinder. Built on <emphasize>Scala</emphasize>, 
+the <emphasize>DSL</emphasize> provides extensive functionality out of the box including 
 easily configured data feeds and response assertions. In cases 
 where customization is needed, it is easy to drop into Scala to 
 provide extensions. The default generation of numerous dynamic 
-views of the data via Highcharts adds to its appeal.</p>
+views of the <emphasize>data via Highcharts adds to its appeal.</emphasize></p>
 					</section>										
 				</section>
 
+<!-- 
+*******************************
+*          Locust             *
+*******************************
+-->	
+				<section data-background-color="black">
+					<img src="assets/locust-logo.png" style="margin:0; border: 0; background: none">
+					<br>
+					<a href="http://locust.io/">http://locust.io/</a>						
+				</section>
 				<section>
-					<section>
-						<h2>Locust</h2>
-					</section>
-					<section>
-						<h2>What</h2>
-					</section>
-					<section>
-						<h2>Litt sparsomt med eksempel</h2>
-					</section>
-					<section>
-						<h2>Skrevet i Python</h2>
-						<h2>Kode. Ikke clunky UI eller bloated XML</h2>
-					</section>					
-					<section>
-						<h2>Kort om python. Bruk eksempelet</h2>
-						<h2>Comments. Triple line.</h2>
-					</section>
-					<section>
-						<h2>Why</h2>
-					</section>
-					<section>
-						<h2>How</h2>						
-					</section>
-					<section>
-						<h2>Specify host</h2>						
-					</section>
-					<section>
-						<h2>Locust --help</h2>						
-					</section>
-					<section>
-						<h2>Hvordan med Jenkins</h2>						
-					</section>
-					<section>
-						<h2>Hvorfor med Jenkins?</h2>						
-					</section>
-					<section>
-						<h2>Build Pipelines</h2>						
-					</section>
-					<section>
-						<h2>Web Routes</h2>
-						<h2>/my_page</h2>
-					</section>
-					<section>
-						<h2>Ramp'ing</h2>
-					</section>					
+					<h2>Hva</h2>
+					<p>Skrevet i Python.</p>
+					<p>Skalerbart. Distribuert.</p>
+					<p>Kan simulere millioner av brukere.</p>
+				</section>
+				<section>
+					<h2>Innstallere</h2>
+					<pre><code class="bash" data-trim>
+> sudo apt-get install -y 
+	python-dev 
+	python-pip python-gevent 
+	libevent-dev libzmq-dev
+> sudo pip install pyzmq gevent-zeromq locustio</code></pre>
+				</section>
+				<section>
+					<h2>locustfile.py</h2>
+					<p>get, post, session</p>
+					<pre><code class="python">
+from locust import Locust, TaskSet, task
+
+class JmeterBenchmark(TaskSet):
+    def on_start(self):
+        # Before any task is run
+
+    @task(1)
+    def index(self):
+        self.client.get("/examples/servlets/index.html")
+
+    @task(1)
+    def sessionExample1(self):
+        self.client.get("/examples/servlets/servlet/SessionExample")
+
+    @task(1)
+    def sessionExample2Post(self):
+        self.client.post("/examples/servlets/servlet/SessionExample",
+         {"dataname" : "TOTO", "datavalue" : "TITI"})
+    
+    #Execution ratio twice as much as the others
+    @task(2)
+    def sessionExample3(self):
+        self.client.get("/examples/servlets/servlet/SessionExample")
+
+class WebsiteUser(Locust):
+    task_set = JmeterBenchmark
+    host = "http://192.168.33.12:8080"
+    min_wait=500
+    max_wait=2000</code></pre>
+				</section>
+				<section>
+					<pre><code class="bash">
+> locust</code></pre>						
+				</section>
+				<section>
+					<h2>DEMO</h2>
+				</section>
+				<section>
+					<p>Shiiit. I want more</p>
+					<h2>clients</h2>
+				</section>
+				<section>
+					<h2>webservices</h2>
+					<pre><code class="python">
+from locust import Locust, TaskSet, task
+
+customersByName = open("getCustomersByName.xml", "r").read()
+updateCustomer = open("updateCustomer.xml", "r").read()
+
+class CxfWsdlFirst(TaskSet):
+    
+    # Update does nothing. We just check that the response is in the 200-numbers.
+    @task(4)
+    def update(self):
+        response = self.client.post(url="/wsdl_first/services/CustomerServicePort",
+        	data=updateCustomer,
+        	name="Update Customer")        
+    
+    #The Webservice returns a customer with id 0 and the name we provided (Clark Kent)
+    @task(1)
+    def getCustomer(self):
+        with self.client.post(url="/wsdl_first/services/CustomerServicePort",
+        	data=customersByName,
+        	name="Get Customer",
+        	catch_response=True) as response:
+        		if "Clark Kent" not in response.content:
+        			response.failure("Could not find firstname Clark in response")
+
+class WebsiteUser(Locust):
+    task_set = CxfWsdlFirst
+    host = "http://192.168.33.12:8080"
+    min_wait=500
+    max_wait=2000</code></pre>						
+				</section>
+				<section>
+					<h2>Web browsing</h2>					
+				</section>
+				<section>
+					<h2>Web Routes</h2>
+					<pre><code class="python">
+@web.app.route("/about")
+def helloworld():
+    return "Hello world"</code></pre>
+				</section>
+				<section>
+					<h2>Events</h2>
+					<pre><code class="python">
+...
+stats = {"content-length":0}
+
+def on_request_success(method, path, response_time, response):
+    stats["content-length"] += int(response.info.getheader("content-length"))
+
+def on_report_to_master(client_id, data):
+    data["content-length"] = stats["content-length"]
+    stats["content-length"] = 0
+
+def on_slave_report(client_id, data):
+    stats["content-length"] += stats["content-length"]
+
+# Hook up the event listeners
+events.request_success += on_request_success
+events.report_to_master += on_report_to_master
+events.slave_report += on_slave_report
+
+@web.app.route("/content-length")
+def total_content_length():
+    return "Total content-length recieved: %i" % stats["content-length"]</code></pre>
+				</section>
+				<section>
+					<h2>Ramp'ing</h2>
+				</section>
+				<section>
+					<table width="100%">
+						<thead>
+							<th width="50%">+</th>
+							<th width="50%">-</th>
+						</thead>
+						<tr>
+							<td>Python
+								<br>
+								Kraftig
+							</td>
+							<td>Dokumentasjon
+								<br>
+								Grafer
+								<br>
+								Jenkins plugin
+							</td>
+						</tr>
+					</table>
 				</section>
 
+<!-- 
+*******************************
+*          Gatling            *
+*******************************
+-->	
 				<section>
 					<section>
 						<h2>Gatling</h2>
@@ -328,6 +586,11 @@ views of the data via Highcharts adds to its appeal.</p>
                     </section>
                 </section>
 
+<!-- 
+*******************************
+*          Oppsummering       *
+*******************************
+-->	
                 <section>
                     <section>
                         <h2>Oppsummering</h2>
@@ -337,6 +600,9 @@ views of the data via Highcharts adds to its appeal.</p>
                             <li>Fin måte å lære nytt språk på</li>
                         </ul>
                     </section>
+                    <section>
+                        <h2>Hva har vi ikke dekket</h2>
+                    </section>                    
                     <section>
                         <h2>Lenker</h2>
                         <ul>
@@ -351,12 +617,21 @@ views of the data via Highcharts adds to its appeal.</p>
 
 	<script src="../assets/revealjs/lib/js/head.min.js"></script>
 	<script src="../assets/revealjs/js/reveal.min.js"></script>
+	<!--<script src="../assets/revealjs/lib/js/highlight.js"></script>-->
 
 	<script>
 
 			Reveal.initialize({
 				transition: 'linear',
 				history: true,
+				// Bounds for smallest/largest possible scale to apply to content
+    			minScale: 0.2,
+    			maxScale: 1.0,
+				dependencies: [
+					{ src: '../assets/revealjs/lib/classList.js', condition: function() { return !document.body.classList; } },	
+					{ src: '../assets/revealjs/lib/js/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },					
+					{ src: '../assets/revealjs/lib/js/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
 			});
 
 		</script>
