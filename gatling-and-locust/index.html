@@ -167,8 +167,9 @@
 					<section>
 						<p>mao:</p>
 						<h2>Start tidlig med ytelseskrav!</h2>
-						<p>og vær spesifikk.</p>
+						<p>og prøv å vær spesifikk.</p>
 						<p>alle transaksjoner skal ta under 2 sek er ikke spesifikt nok.</p>
+						<p>Selv de mindre brukte? Under stress? Til brukeren får respons?</p>
 					</section>
 					<section>
 						<p>f.eks:</p>
@@ -417,14 +418,16 @@ updateCustomer = open("updateCustomer.xml", "r").read()
 
 class CxfWsdlFirst(TaskSet):
     
-    # Update does nothing. We just check that the response is in the 200-numbers.
+    # Update does nothing. 
+    #We just check that the response is in the 200-numbers.
     @task(4)
     def update(self):
         response = self.client.post(url="/wsdl_first/services/CustomerServicePort",
         	data=updateCustomer,
         	name="Update Customer")        
     
-    #The Webservice returns a customer with id 0 and the name we provided (Clark Kent)
+    # The Webservice returns a customer with id 0 
+    # and the name we provided (Clark Kent)
     @task(1)
     def getCustomer(self):
         with self.client.post(url="/wsdl_first/services/CustomerServicePort",
@@ -545,6 +548,8 @@ def total_content_length():
 							<td>Dokumentasjon
 								<br>
 								Grafer
+								<br>
+								Commiters/forks
 								<br>
 								Jenkins plugin
 							</td>
