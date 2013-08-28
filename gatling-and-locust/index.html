@@ -113,7 +113,7 @@
 						</column>						
 					</section>
 					<section>
-						<blockquote>We should forget about small efficiencies, say, about 97% of the time:<b> Premature optimization is the root of all evil. </b>Yet we should not pass up our opportunities in that critical 3%.</blockquote>
+						<blockquote>"We should forget about small efficiencies, say, about 97% of the time:<b> Premature optimization is the root of all evil. </b>Yet we should not pass up our opportunities in that critical 3%."</blockquote>
 						<p>Donald Knuth</p>
 					</section>
 					<section>
@@ -128,7 +128,7 @@
 						<column>
 							<h2>NFR</h2>
 							<p>Non Functional Requirements</p>
-							<blockquote cite="http://www.amazon.com/Continuous-Delivery-Deployment-Automation-Addison-Wesley/dp/0321601912/ref=sr_1_1?ie=UTF8&qid=1377554394&sr=8-1&keywords=continuous+delivery">...as availability, capacity, security, and maintainability are every bit as important and valuable as functional ones, and they are essential to the functioning of the system.</blockquote>
+							<blockquote cite="http://www.amazon.com/Continuous-Delivery-Deployment-Automation-Addison-Wesley/dp/0321601912/ref=sr_1_1?ie=UTF8&qid=1377554394&sr=8-1&keywords=continuous+delivery">."..as availability, capacity, security, and maintainability are every bit as important and valuable as functional ones, and they are essential to the functioning of the system."</blockquote>
 						</column>
 						<column>
 							<img src="assets/continuousDelivery.jpg" align="right">
@@ -401,6 +401,7 @@ class WebsiteUser(Locust):
 				</section>
 				<section>
 					<h2>DEMO</h2>
+					<a href="https://github.com/judoole/locust-example">github.com/judoole/locust-example</a>
 				</section>
 				<section>
 					<p>Shiiit. I want more</p>
@@ -440,7 +441,57 @@ class WebsiteUser(Locust):
     max_wait=2000</code></pre>						
 				</section>
 				<section>
-					<h2>Web browsing</h2>					
+					<h2>Web browsing</h2>
+					<pre><code class="python">
+# This locust test script example will simulate a user 
+# browsing the Locust documentation on http://docs.locust.io
+
+import random
+from locust import Locust, TaskSet, task
+from pyquery import PyQuery
+
+
+class BrowseDocumentation(TaskSet):
+    def on_start(self):
+        # assume all users arrive at the index page
+        self.index_page()
+        self.urls_on_current_page = self.toc_urls
+    
+    @task(10)
+    def index_page(self):
+        r = self.client.get("/")
+        pq = PyQuery(r.content)
+        link_elements = pq(".toctree-wrapper a.internal")
+        self.toc_urls = [
+            l.attrib["href"] for l in link_elements
+        ]
+    
+    @task(50)
+    def load_page(self, url=None):
+        url = random.choice(self.toc_urls)
+        r = self.client.get(url)
+        pq = PyQuery(r.content)
+        link_elements = pq("a.internal")
+        self.urls_on_current_page = [
+            l.attrib["href"] for l in link_elements
+        ]
+    
+    @task(30)
+    def load_sub_page(self):
+        url = random.choice(self.urls_on_current_page)
+        r = self.client.get(url)
+
+
+class AwesomeUser(Locust):
+    task_set = BrowseDocumentation
+    host = "http://docs.locust.io/en/latest/"
+    
+    # we assume someone who is browsing the Locust docs, 
+    # generally has a quite long waiting time (between 
+    # 20 and 600 seconds), since there's a bunch of text 
+    # on each page
+    min_wait = 20  * 1000
+    max_wait = 600 * 1000</code></pre>					
 				</section>
 				<section>
 					<h2>Web Routes</h2>
@@ -476,6 +527,7 @@ def total_content_length():
 				</section>
 				<section>
 					<h2>Ramp'ing</h2>
+					<p>La Locust finne sweetspoten</p>
 				</section>
 				<section>
 					<table width="100%">
@@ -487,6 +539,8 @@ def total_content_length():
 							<td>Python
 								<br>
 								Kraftig
+								<br>
+								Webgrensesnitt
 							</td>
 							<td>Dokumentasjon
 								<br>
@@ -598,35 +652,33 @@ def total_content_length():
                     <section>
                         <ul>
                             <li>Fin måte å lære nytt språk på</li>
+                            <li>Erstatter JMeter, Grinder, Tsung etc.</li>
+                            <li>Kan simulere akkurat så mange brukere du ønsker</li>
+                            <li>Start tidlig</li>
+                            <li>Inkluder i Jenkins e.l.</li>                            
+                            <li>Lag krav/features</li>
                         </ul>
                     </section>
-                    <section>
-                        <h2>Hva har vi ikke dekket</h2>
-                    </section>                    
                     <section>
                         <h2>Lenker</h2>
                         <ul>
-                        <li><a href="https://github.com/landro/fagdag-gatling">Gatling eksempler på github</a></li>
+                        	<li><a href="https://github.com/landro/fagdag-gatling">Gatling eksempler på github</a></li>
+                        	<li><a href="https://github.com/judoole/locust-example">Locust eksempel med Vagrant</a></li>
                         </ul>
                     </section>
                 </section>
-
 
 			</div>
     </div>
 
 	<script src="../assets/revealjs/lib/js/head.min.js"></script>
 	<script src="../assets/revealjs/js/reveal.min.js"></script>
-	<!--<script src="../assets/revealjs/lib/js/highlight.js"></script>-->
 
 	<script>
 
 			Reveal.initialize({
 				transition: 'linear',
 				history: true,
-				// Bounds for smallest/largest possible scale to apply to content
-    			minScale: 0.2,
-    			maxScale: 1.0,
 				dependencies: [
 					{ src: '../assets/revealjs/lib/classList.js', condition: function() { return !document.body.classList; } },	
 					{ src: '../assets/revealjs/lib/js/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },					
