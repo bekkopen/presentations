@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="no">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Ytelse og stabilitet 101</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../assets/revealjs/css/reveal.min.css">
+		<link rel="stylesheet" href="../assets/revealjs/css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="../assets/revealjs/css/zenburn.css" id="theme">
+		<style type="text/css">
+			ul.checkmark li:before{
+    			content:"\2713\0020";
+			}
+			ul.checkmark li{
+				list-style-type:none;
+			}
+			column{
+				float: left;
+				text-align: left;
+				width: 50%;
+			}
+			emphasize{
+				color: #ff6600;
+			}
+		</style>
+	</head>
+
+	<body>
+	<div class="reveal">
+		<div class="slides">
+
+				<section>
+					<h2>Ytelse og stabilitet 101</h2>
+                    <h4>Javazone, 11. september 2013</h4>
+				</section>
+
+				<section>
+					<div style="float:left;width:50%;text-align:left">
+						<h3>Stefan Magnus Landrø</h3>
+						<ul class="checkmark">
+							<li>10++ år med progging</li>
+							<li>Faggruppeleder Cloud og Big data i BEKK</li>
+						</ul>
+					</div>
+					<div style="float:left;width:50%">
+						<img src="assets/stefan.jpeg" align="right">
+					</div>
+				</section>
+
+            <section data-background="assets/queue.jpg">
+            </section>
+
+                <!-- Agenda -->
+				<section>
+					<h2>Agenda</h2>
+					<ul>
+						<li class="fragment">Ressursmangel</li>
+                        <li class="fragment">Monitorering med JVisual VM (demo)</li>
+                        <li class="fragment">Ytelsestesting med Gatling (demo)</li>
+                        <li class="fragment">Analyse av Thread dumps (demo)</li>
+						<li class="fragment">Analyse av Heap dumps (demo)</li>
+						<li class="fragment">Erfaringer fra krigen (demo)</li>
+						<li class="fragment">Oppsummering</li>
+					</ul>
+				</section>
+
+                <!-- Ressursmangel -->
+                <section>
+
+                    <section data-background="assets/queue.jpg">
+                    </section>
+
+                    <section>
+                        <h2>Ressursmangel</h2>
+                        <ul>
+                            <li class="fragment">CPU (super computing)</li>
+                            <li class="fragment">Minne (out of memory exception)</li>
+                            <li class="fragment">Ressurser som ikke er thread safe
+                                <ul>
+                                    <li class="fragment">Database connection</li>
+                                    <li class="fragment">HTTP connection (endres i SPDY!)</li>
+                                    <li class="fragment">XML Marhaller (object <-> XML)</li>
+                                    <li class="fragment">...</li>
+                                </ul>
+                            </li>
+                            <li class="fragment">Etc etc ...</li>
+                        </ul>
+                    </section>
+
+                    <section data-background="assets/queue.jpg">
+                    </section>
+
+                </section>
+
+
+			</div>
+    </div>
+
+	<script src="../assets/revealjs/lib/js/head.min.js"></script>
+	<script src="../assets/revealjs/js/reveal.min.js"></script>
+
+	<script>
+
+			Reveal.initialize({
+				transition: 'linear',
+				history: true,
+				dependencies: [
+					{ src: '../assets/revealjs/lib/classList.js', condition: function() { return !document.body.classList; } },	
+					{ src: '../assets/revealjs/lib/js/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },					
+					{ src: '../assets/revealjs/lib/js/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+	</body>
+</html>
