@@ -51,8 +51,8 @@
 					</div>
 				</section>
 
-            <section data-background="assets/queue.jpg">
-            </section>
+                <section data-background="assets/queue.jpg">
+                </section>
 
                 <!-- Agenda -->
 				<section>
@@ -71,11 +71,15 @@
                 <!-- Ressursmangel -->
                 <section>
 
+                    <section>
+                        <h2>Ressursmangel</h2>
+                    </section>
+
                     <section data-background="assets/queue.jpg">
                     </section>
 
                     <section>
-                        <h2>Ressursmangel</h2>
+
                         <ul>
                             <li class="fragment">CPU (super computing)</li>
                             <li class="fragment">RAM (out of memory exception)</li>
@@ -110,6 +114,10 @@
                 <!-- Monitorering med JVisual VM -->
                 <section>
 
+                    <section>
+                        <h2>Monitorering</h2>
+                    </section>
+
                     <section data-background="assets/jvisualvm.png">
                     </section>
 
@@ -131,15 +139,215 @@
                             <li class="fragment">Thread dump</li>
                             <li class="fragment">...</li>
                         </ul>
+                    </section>
 
+                    <section>
+                        <h2>DEMO</h2>
+                    </section>
+
+                </section>
+
+                <!-- Gatling -->
+                <section>
+
+                    <section>
+                        <h2>Ytelsestesting med Gatling</h2>
+                    </section>
+
+                    <section>
+                        <img src="assets/gatling-logo.png" style="margin:0; border: 0; background: none">
+                        <br>
+                        <a href="http://gatling-tool.org/">http://gatling-tool.org/</a>
+                    </section>
+
+                    <section>
+                        <ul>
+                            <li>Ytelsestestverktøy</li>
+                            <li>Open source (Apache 2)</li>
+                            <li>Scala DSL</li>
+                            <li>Actors (Akka)</li>
+                            <li>Asynkron HTTP klient (Netty)</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <ul>
+                            <li>Opprett prosjekt med maven archetype</li>
+                            <li>Skriv tester i IDE (IntelliJ)</li>
+                            <li>Kjør test i IDE eller maven</li>
+                            <li>Kjør tester (kontinuerlig) på Jenkins</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>DEMO</h2>
                     </section>
 
 
                 </section>
 
+                <!-- Thread dumps -->
+                <section>
+
+                    <section>
+                        <h2>Analyse av thread dumps</h2>
+                    </section>
+
+                    <section data-background="assets/thread-dump.png">
+                    </section>
+
+                    <section>
+
+                        <h3>Enum Thread.State</h3>
+
+                        <ul>
+                            <li>NEW - not yet started</li>
+                            <li>RUNNABLE - executing in the JVM</li>
+                            <li>BLOCKED - blocked waiting for a monitor lock</li>
+                            <li>WAITING - waiting indefinitely for another thread to perform a particular action</li>
+                            <li>TIMED_WAITING- waiting for another thread to perform an action for up to a specified waiting time</li>
+                            <li>TERMINATED - exited</li>
+                         </ul>
+
+                    </section>
+
+                    <section>
+                            <h2 class="fragment">BLOCKED</h2>
+                            <h2 class="fragment">WAITING</h2>
+                            <h2 class="fragment">TIMED_WAITING</h2>
+                            <h2 class="fragment" style="color: red;">Bad news?</h2>
+                    </section>
+
+                    <section data-background="assets/queue.jpg">
+                    </section>
+
+                    <section>
+                        <code>
+                            kill -QUIT &lt;PID&gt;
+                        </code>
+                    </section>
+
+                    <section>
+                        <h2>DEMO</h2>
+                    </section>
+
+                </section>
+
+                <!-- Heap dumps -->
+                <section>
+
+                    <section>
+                         <h2>Heap dumps</h2>
+                    </section>
+
+                    <section>
+                         <h2>En heap dump er en snapshot av minnet til en java process</h2>
+                    </section>
+
+                    <section>
+                        <code>
+                            -XX:+HeapDumpOnOutOfMemoryError
+                        </code>
+                    </section>
+
+                    <section>
+                        <code>
+                           jmap -dump:format=b,file=&lt;filename&gt; &lt;pid&gt;
+                        </code>
+                    </section>
+
+                    <section>
+                        <h2>DEMO</h2>
+                    </section>
+
+                </section>
+
+                <!-- Krigserfaring -->
+                <section>
+
+                        <section>
+                            <h2>Krigserfaring</h2>
+                        </section>
+
+                       <section>
+                           <h3>Eksempel:</h3>
+                           <ul>
+                               <li>Heap dump Apache CXF Client</li>
+                               <li class="fragment">WS-Adressing og MTOM</li>
+                               <li class="fragment">PDF payload</li>
+                           </ul>
+                       </section>
+
+                        <section>
+                            <h3>Eksempel:</h3>
+                            <ul>
+                                <li>Thread dump JBoss PDP (XACML)</li>
+                                <li class="fragment">Sikkerhetsrammeverk</li>
+                                <li class="fragment">Sjekker tilgangsrettigheter mot eksterne kilder</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <pre>
+                                <code>
+Name: http-/0.0.0.0:8443-295
+State: WAITING on java.util.concurrent.locks.ReentrantLock$NonfairSync@27c85959 owned by: http-/0.0.0.0:8443-266 Total blocked: 29  Total waited: 48
+
+Stack trace:
+sun.misc.Unsafe.park(Native Method)
+java.util.concurrent.locks.LockSupport.park(LockSupport.java:186)
+java.util.concurrent.locks.AbstractQueuedSynchronizer.parkAndCheckInterrupt(AbstractQueuedSynchronizer.java:834)
+java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireQueued(AbstractQueuedSynchronizer.java:867)
+java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire(AbstractQueuedSynchronizer.java:1197)
+java.util.concurrent.locks.ReentrantLock$NonfairSync.lock(ReentrantLock.java:214)
+java.util.concurrent.locks.ReentrantLock.lock(ReentrantLock.java:290)
+org.jboss.security.xacml.core.JBossPDP.evaluate(JBossPDP.java:291)
+no.nav.modig.security.tilgangskontroll.policy.pdp.picketlink.PicketLinkDecisionPoint.evaluate(PicketLinkDecisionPoint.java:49)
+no.nav.modig.security.tilgangskontroll.policy.pep.PEPImpl.evaluate(PEPImpl.java:31)
+no.nav.modig.security.tilgangskontroll.policy.pep.PEPImpl.hasAccess(PEPImpl.java:43)
+no.nav.modig.security.tilgangskontroll.policy.pep.PEPImpl.assertAccess(PEPImpl.java:36)
+                                </code>
+                            </pre>
+
+                        </section>
+
+                        <section>
+                            <pre><code class="java">
+Stuff stuff = null;
+lock.lock();  // linje 291
+
+try {
+
+  stuff = getStuffFromCache();
+
+  if (stuff = null) {
+      stuff = expensiveOperation();
+  }
+
+finally {
+  lock.unlock();
+}
+                            </code></pre>
+
+                        </section>
+
+                </section>
 
 
-			</div>
+                <!-- Oppsummering -->
+                <section>
+
+                    <section>
+                        <h2>Oppsummering</h2>
+                    </section>
+
+                    <section data-background="assets/queue.jpg">
+                    </section>
+
+                </section>
+
+
+        </div>
     </div>
 
 	<script src="../assets/revealjs/lib/js/head.min.js"></script>
