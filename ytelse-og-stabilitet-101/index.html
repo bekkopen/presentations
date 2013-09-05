@@ -33,10 +33,13 @@
 	<div class="reveal">
 		<div class="slides">
 
-				<section>
-					<h2>Ytelse og stabilitet 101</h2>
-                    <h4>Javazone, 11. september 2013</h4>
+				<section data-background="assets/queue.jpg">
 				</section>
+
+                <section>
+                    <h2>Ytelse og stabilitet 101</h2>
+                    <h4>Javazone, 11. september 2013</h4>
+                </section>
 
 				<section>
 					<div style="float:left;width:50%;text-align:left">
@@ -51,20 +54,17 @@
 					</div>
 				</section>
 
-                <section data-background="assets/queue.jpg">
-                </section>
-
                 <!-- Agenda -->
 				<section>
-					<h2>Agenda</h2>
-					<ul>
-						<li class="fragment">Ressursmangel</li>
-                        <li class="fragment">Monitorering av JVM med JVisual VM (demo)</li>
-                        <li class="fragment">Ytelsestesting med Gatling (demo)</li>
-                        <li class="fragment">Analyse av Thread dumps (demo)</li>
-						<li class="fragment">Analyse av Heap dumps (demo)</li>
-						<li class="fragment">Erfaringer fra krigen (demo)</li>
-						<li class="fragment">Oppsummering</li>
+					<h3>Agenda</h3>
+					<ul class="checkmark">
+						<li>Ressursmangel</li>
+                        <li>Monitorering av JVM med JVisual VM (demo)</li>
+                        <li>Ytelsestesting med Gatling (demo)</li>
+                        <li>Analyse av Thread dumps (demo)</li>
+						<li>Analyse av Heap dumps (demo)</li>
+						<li>Erfaringer fra krigen (demo)</li>
+						<li>Oppsummering</li>
 					</ul>
 				</section>
 
@@ -75,24 +75,21 @@
                         <h2>Ressursmangel</h2>
                     </section>
 
-                    <section data-background="assets/queue.jpg">
-                    </section>
-
                     <section>
-
-                        <ul>
-                            <li class="fragment">CPU (super computing)</li>
-                            <li class="fragment">RAM (out of memory exception)</li>
-                            <li class="fragment">Ressurser som ikke er thread safe
+                        <h3>Ressursmangel</h3>
+                        <ul class="checkmark">
+                            <li>CPU (super computing)</li>
+                            <li>RAM (out of memory exception)</li>
+                            <li>Ressurser som ikke er thread safe
                                 <ul>
-                                    <li class="fragment">Database connection</li>
-                                    <li class="fragment">HTTP connection (endres i SPDY!)</li>
-                                    <li class="fragment">XML Marhaller (object <-> XML)</li>
-                                    <li class="fragment">...</li>
+                                    <li>Database connection</li>
+                                    <li>HTTP connection (endres i SPDY!)</li>
+                                    <li>XML Marhaller (object <-> XML)</li>
+                                    <li>...</li>
                                 </ul>
                             </li>
-                            <li class="fragment">Threads (thread starvation)</li>
-                            <li class="fragment">Etc etc ...</li>
+                            <li>Threads (thread starvation)</li>
+                            <li>Etc etc ...</li>
                         </ul>
                     </section>
 
@@ -118,26 +115,31 @@
                         <h2>Monitorering</h2>
                     </section>
 
-                    <section data-background="assets/jvisualvm.png">
-                    </section>
-
                     <section>
-                        <h2>JVM monitoreres over JMX</h2>
-                        <ul>
-                            <li class="fragment">Java VisualVM</li>
-                            <li class="fragment">JConsole</li>
-                            <li class="fragment">...</li>
+                    <div style="float:left;width:50%;text-align:left">
+                        <h3>JVM monitoreres over JMX</h3>
+                        <ul class="checkmark">
+                            <li>Java VisualVM</li>
+                            <li>JConsole</li>
+                            <li>...</li>
                         </ul>
+                    </div>
+                    <div style="float:left;width:50%">
+                        <img src="assets/jvisualvm.png" align="right">
+                    </div>
                     </section>
 
                     <section>
-                        <ul>
-                            <li class="fragment">CPU</li>
-                            <li class="fragment">Heap Memory</li>
-                            <li class="fragment">Heap Memory dump</li>
-                            <li class="fragment">Threads</li>
-                            <li class="fragment">Thread dump</li>
-                            <li class="fragment">...</li>
+                        <h3>Eksponerte verdier</h3>
+                        <ul class="checkmark">
+                            <li>CPU</li>
+                            <li>Heap Memory</li>
+                            <li>Heap Memory dump</li>
+                            <li>Threads</li>
+                            <li>Thread dump</li>
+                            <li>Profilere CPU</li>
+                            <li>Profilere Memory</li>
+                            <li>...</li>
                         </ul>
                     </section>
 
@@ -151,27 +153,30 @@
                 <section>
 
                     <section>
-                        <h2>Ytelsestesting med Gatling</h2>
+                        <h2>Ytelsestesting</h2>
                     </section>
 
                     <section>
-                        <img src="assets/gatling-logo.png" style="margin:0; border: 0; background: none">
-                        <br>
-                        <a href="http://gatling-tool.org/">http://gatling-tool.org/</a>
-                    </section>
-
-                    <section>
-                        <ul>
+                    <div style="float:left;width:50%;text-align:left">
+                        <h3>Gatling</h3>
+                        <ul class="checkmark">
                             <li>Ytelsestestverktøy</li>
                             <li>Open source (Apache 2)</li>
                             <li>Scala DSL</li>
                             <li>Actors (Akka)</li>
                             <li>Asynkron HTTP klient (Netty)</li>
                         </ul>
+                    </div>
+                    <div style="float:left;width:50%">
+                        <img src="assets/gatling-logo.png" style="margin:0; border: 0; background: none">
+                        <br>
+                        <a href="http://gatling-tool.org/">http://gatling-tool.org/</a>
+                    </div>
                     </section>
 
                     <section>
-                        <ul>
+                        <h3>Teste med Gatling</h3>
+                        <ul class="checkmark">
                             <li>Opprett prosjekt med maven archetype</li>
                             <li>Skriv tester i IDE (IntelliJ)</li>
                             <li>Kjør test i IDE eller maven</li>
@@ -190,23 +195,31 @@
                 <section>
 
                     <section>
-                        <h2>Analyse av thread dumps</h2>
+                        <h2>Thread dumps</h2>
                     </section>
 
-                    <section data-background="assets/thread-dump.png">
+                    <section>
+                        <div style="float:left;width:50%;text-align:left">
+                            <h3>Thread dump</h3>
+                            <ul class="checkmark">
+                                <li>State til alle tråder</li>
+                                <li>Call stack til alle tråder</li>
+                            </ul>
+                        </div>
+                        <div style="float:left;width:50%">
+                            <img src="assets/thread-dump.png" style="margin:0; border: 0; background: none">
+                        </div>
                     </section>
 
                     <section>
 
                         <h3>Enum Thread.State</h3>
 
-                        <ul>
-                            <li>NEW - not yet started</li>
-                            <li>RUNNABLE - executing in the JVM</li>
-                            <li>BLOCKED - blocked waiting for a monitor lock</li>
-                            <li>WAITING - waiting indefinitely for another thread to perform a particular action</li>
-                            <li>TIMED_WAITING- waiting for another thread to perform an action for up to a specified waiting time</li>
-                            <li>TERMINATED - exited</li>
+                        <ul class="checkmark">
+                            <li><strong style="color: red;">RUNNABLE</strong> - executing in the JVM</li>
+                            <li><strong style="color: red;">BLOCKED</strong> - blocked waiting for a monitor lock</li>
+                            <li><strong style="color: red;">WAITING</strong> - waiting indefinitely for another thread to perform a particular action</li>
+                            <li><strong style="color: red;">TIMED_WAITING</strong> - waiting for another thread to perform an action for up to a specified waiting time</li>
                          </ul>
 
                     </section>
@@ -241,7 +254,7 @@
                     </section>
 
                     <section>
-                         <h2>En heap dump er en snapshot av minnet til en java process</h2>
+                         <h3>Snapshot av minnet til en java process</h3>
                     </section>
 
                     <section>
@@ -271,7 +284,7 @@
 
                        <section>
                            <h3>Eksempel:</h3>
-                           <ul>
+                           <ul class="checkmark">
                                <li>Heap dump Apache CXF Client</li>
                                <li class="fragment">WS-Adressing og MTOM</li>
                                <li class="fragment">PDF payload</li>
@@ -279,8 +292,12 @@
                        </section>
 
                         <section>
+                            <h2>DEMO</h2>
+                        </section>
+
+                        <section>
                             <h3>Eksempel:</h3>
-                            <ul>
+                            <ul class="checkmark">
                                 <li>Thread dump JBoss PDP (XACML)</li>
                                 <li class="fragment">Sikkerhetsrammeverk</li>
                                 <li class="fragment">Sjekker tilgangsrettigheter mot eksterne kilder</li>
@@ -356,7 +373,7 @@ finally {
 	<script>
 
 			Reveal.initialize({
-				transition: 'linear',
+				transition: 'default',
 				history: true,
 				dependencies: [
 					{ src: '../assets/revealjs/lib/classList.js', condition: function() { return !document.body.classList; } },	
