@@ -292,6 +292,27 @@
                        </section>
 
                         <section>
+<pre><code class="java">
+// Pseudo code
+public class MAPCodec extends AbstractSoapInterceptor {
+
+    protected final Map&lt;String, Exchange&gt; uncorrelatedExchanges;
+
+    public void handleMessage(SoapMessage m) {
+         if (outboundMessage)
+            uncorrelatedExchanges.put(uuid, m)
+        else
+            uncorrelatedExchanges.remove(uuid);
+    }
+
+    public void handleFault(SoapMessage m) {
+        uncorrelatedExchanges.remove(uuid);
+    }
+}
+</code></pre>
+                        </section>
+
+                        <section>
                             <h2>DEMO</h2>
                         </section>
 
